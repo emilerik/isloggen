@@ -68,8 +68,8 @@ class NewPost extends React.Component {
             className="ui dropdown"
             onChange={this.onChangePlats}
           >
-            <option value="drevviken">Drevviken</option>
-            <option value="norrviken">Norrviken</option>
+            <option value="Drevviken">Drevviken</option>
+            <option value="Norrviken">Norrviken</option>
           </select>
         </Form.Field>
         <Form.Field>

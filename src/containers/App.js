@@ -13,7 +13,8 @@ const initialState = {
     name: "",
     email: "",
     postcount: 0
-  }
+  },
+  route: "loggedOut"
 };
 
 class App extends Component {
@@ -29,10 +30,21 @@ class App extends Component {
     });
   };
 
+  onRouteChange = route => {
+    this.setState({ route: route });
+    if (route === "logout") {
+      this.setState(initialState);
+    }
+  };
+
   render() {
     return (
       <div className="App flex flex-column items-center">
-        <Header onLogin={this.onLogin} />
+        <Header
+          onLogin={this.onLogin}
+          isLoggedIn={this.state.isLoggedIn}
+          onRouteChange={this.onRouteChange}
+        />
         <div className="w-40 pa2">
           {this.state.isLoggedIn ? (
             //console.log(this.state)
