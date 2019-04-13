@@ -19,33 +19,21 @@ class NewPost extends React.Component {
     this.state = {
       user_id: 0,
       kommentar: "",
-      betyg: "",
-      plats: ""
+      betyg: "5",
+      plats: "Drevviken"
     };
   }
 
-  onChangeUserId = event => {
-    this.setState({ user_id: event.target.value });
-  };
+  // onChangeUserId = event => {
+  //   this.setState({ user_id: event.target.value });
+  // };
 
   onChangeBetyg = event => {
     this.setState({ betyg: event.target.value });
   };
 
   onChangePlats = event => {
-    const platsNum = event.target.value;
-    let plats = "";
-    switch (platsNum) {
-      case "1":
-        plats = "Drevviken";
-        break;
-      case "2":
-        plats = "Norrviken";
-        break;
-      default:
-        plats = "Null";
-    }
-    this.setState({ plats: plats });
+    this.setState({ plats: event.target.value });
   };
 
   onChangeKommentar = event => {
@@ -53,14 +41,17 @@ class NewPost extends React.Component {
   };
 
   onSubmitPost = () => {
+    console.log(this.state);
     fetch("http://localhost:3000/post", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        user_id: this.state.user_id,
-        content: this.state.content
+        user_id: this.props.user_id,
+        kommentar: this.state.kommentar,
+        betyg: this.state.betyg,
+        plats: this.state.plats
       })
     })
       .then(res => res.json())
@@ -71,18 +62,14 @@ class NewPost extends React.Component {
     return (
       <Form className="pa4 ma2 ba w-100">
         <Form.Field>
-          <label>User ID</label>
-          <input placeholder="user id..." onChange={this.onChangeUserId} />
-        </Form.Field>
-        <Form.Field>
           <label>Plats</label>
           <select
-            name="location"
+            name="plats"
             className="ui dropdown"
             onChange={this.onChangePlats}
           >
-            <option value="1">Drevviken</option>
-            <option value="2">Norrviken</option>
+            <option value="drevviken">Drevviken</option>
+            <option value="norrviken">Norrviken</option>
           </select>
         </Form.Field>
         <Form.Field>

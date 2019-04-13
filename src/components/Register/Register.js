@@ -44,10 +44,6 @@ class Register extends React.Component {
     });
   };
 
-  testButton = () => {
-    console.log(this.state);
-  };
-
   render() {
     return (
       <div className="dropdown pt2 pr3 mr2 mt2 ma0">

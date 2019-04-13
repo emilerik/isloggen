@@ -22,9 +22,8 @@ class SignIn extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
-        console.log(user);
         if (user.id) {
-          this.props.onLogin();
+          this.props.onLogin(user);
           this.setState({
             incorrectCredentials: false
           });
@@ -41,7 +40,6 @@ class SignIn extends React.Component {
     this.setState({
       email: event.target.value
     });
-    console.log(event.target.value);
   };
   onPasswordChange = event => {
     this.setState({

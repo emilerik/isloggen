@@ -2,22 +2,46 @@ import React from "react";
 import Post from "../Post/Post";
 import "./Posts.css";
 
-const Posts = () => {
-  return (
-    <table class="ui celled table">
-      <thead>
-        <tr>
-          <th class="center aligned">Plats</th>
-          <th class="center aligned">Betyg</th>
-          <th class="center aligned">Kommentar</th>
-          <th class="center aligned">Användare</th>
-          <th class="center aligned">Datum</th>
-        </tr>
-      </thead>
+class Posts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { posts: {} };
+  }
 
-      <Post />
-    </table>
-  );
-};
+  componentDidMount() {
+    fetch("http://localhost:3000/getposts")
+      .then(response => response.json())
+      .then(posts => this.setState({ posts: posts }))
+      .catch(err => console.log(err));
+  }
+  // {posts.map(post => {
+  //   return <Post post={post} />;
+  // })}
+
+  render() {
+    const { posts } = this.state;
+    return (
+      <div>
+        {posts[0] ? (
+          <table className="ui celled table">
+            <thead>
+              <tr>
+                <th className="center aligned">Plats</th>
+                <th className="center aligned">Betyg</th>
+                <th className="center aligned">Kommentar</th>
+                <th className="center aligned">Användare</th>
+                <th className="center aligned">Datum</th>
+              </tr>
+            </thead>
+            {posts.map(post => {
+              return <Post post={post} />;
+            })}
+          </table>
+        ) : null}
+        {}
+      </div>
+    );
+  }
+}
 
 export default Posts;
