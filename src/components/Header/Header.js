@@ -3,12 +3,12 @@ import SignIn from "../SignIn/SignIn";
 import Register from "../Register/Register";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ onLogin }) => {
   return (
-    <header className="flex justify-between items-center w-70 white">
-      <div className="f2 ph4 pv2">❄ Isinfo ❄</div>
-      <div className="flex flex-wrap ma0 ph2">
-        <SignIn />
+    <header className="flex justify-between items-center w-100 white">
+      <div className="f1 pa3 pl5">❄ Isinfo ❄</div>
+      <div className="flex flex-wrap ma0 pa3 pr5 fns">
+        <SignIn onLogin={onLogin} />
         <Register />
       </div>
     </header>

@@ -6,7 +6,9 @@ const knex = require("knex");
 
 //Controllers
 const register = require("./controllers/register.js");
-const signin = require("./controllers/signin");
+const signin = require("./controllers/signin.js");
+const post = require("./controllers/post.js");
+const getPosts = require("./controllers/getPosts.js");
 //const profile = require('./controllers/profile');
 //const image = require('./controllers/image');
 
@@ -14,8 +16,10 @@ const signin = require("./controllers/signin");
 const db = knex({
   client: "pg",
   connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
+    host: "127.0.0.1",
+    user: "",
+    password: "",
+    database: "isinfo-db"
   }
 });
 
@@ -29,8 +33,10 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("this is a server");
 });
+app.get("/getposts", getPosts.handleGetPosts(db));
 app.post("/signin", signin.handleSignin(db, bcrypt));
 app.post("/register", register.handleRegister(db, bcrypt));
+app.post("/post", post.handlePost(db));
 /*app.get("/profile/:id", profile.handleProfileGet(db));
 app.put("/image", image.handleImage(db));
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res));
