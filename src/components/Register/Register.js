@@ -46,9 +46,9 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div className="dropdown pt2 pr3 mr2 mt2 ma0">
+      <div className="dropdown ph3">
         <p
-          className="f4 pointer white"
+          className="f4 pointer white ma0"
           id="dropdownMenuButton"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -57,7 +57,7 @@ class Register extends React.Component {
           Registrera
         </p>
         <div
-          className="dropdown-menu dropdown-menu-right"
+          className="dropdown-menu dropdown-menu-right ma3"
           aria-labelledby="dropdownMenuButton"
         >
           <Form className="pa3" direction="left">

@@ -1,5 +1,5 @@
 const handlePost = db => (req, res) => {
-  const { user_id, kommentar, betyg, plats } = req.body;
+  const { user_id, kommentar, betyg, plats, datum } = req.body;
   if (!kommentar) {
     return res.status(400).json("incorrect form submission");
   }
@@ -9,7 +9,8 @@ const handlePost = db => (req, res) => {
         user_id: user_id,
         kommentar: kommentar,
         betyg: betyg,
-        plats: plats
+        plats: plats,
+        datum: datum
       })
       .into("posts")
       .returning("id")

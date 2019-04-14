@@ -6,21 +6,23 @@ import "./Header.css";
 const Header = ({ onLogin, isLoggedIn, onRouteChange }) => {
   console.log(onRouteChange);
   return (
-    <header className="flex justify-between items-center w-100 white">
-      <div className="f1 pa3 pl5">❄ Isinfo ❄</div>
-      {isLoggedIn ? (
-        <p
-          className="f4 pointer white ma0 pa3 pr5"
-          onClick={() => onRouteChange("logout")}
-        >
-          Logga ut
-        </p>
-      ) : (
-        <div className="flex flex-wrap ma0 pa3 pr5 fns">
-          <SignIn onLogin={onLogin} onRouteChange={onRouteChange} />
-          <Register />
-        </div>
-      )}
+    <header className="w-100 white pa3 ph5 pv2 mh2 mt2">
+      <div>
+        {isLoggedIn ? (
+          <p
+            className="w-third fr f4 pointer white pa3 tr"
+            onClick={() => onRouteChange("logout")}
+          >
+            Logga ut
+          </p>
+        ) : (
+          <div className="w-third fr flex flex-wrap justify-end pa3 ma0">
+            <SignIn onLogin={onLogin} onRouteChange={onRouteChange} />
+            <Register />
+          </div>
+        )}
+      </div>
+      <div className="w-third fr f1 pa3 tc">❄ Isinfo ❄</div>
     </header>
   );
 };

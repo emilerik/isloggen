@@ -1,45 +1,34 @@
 import React from "react";
-import { Dropdown, Form, Button, Input } from "semantic-ui-react";
+import { Button, Header, Image, Modal } from "semantic-ui-react";
 
-class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
+const TestComponent = () => (
+  <div className="ui modal">
+    Hasdad
+    <i className="close icon" />
+    <div className="header">Profile Picture</div>
+    <div className="image content">
+      <div className="description">
+        <div className="ui header">
+          We've auto-chosen a profile image for you.
+        </div>
+        <p>
+          We've grabbed the following image from the{" "}
+          <a href="https://www.gravatar.com" target="_blank">
+            gravatar
+          </a>{" "}
+          image associated with your registered e-mail address.
+        </p>
+        <p>Is it okay to use this photo?</p>
+      </div>
+    </div>
+    <div className="actions">
+      <div className="ui black deny button">Nope</div>
+      <div className="ui positive right labeled icon button">
+        Yep, that's me
+        <i className="checkmark icon" />
+      </div>
+    </div>
+  </div>
+);
 
-  onSubmitSignin = () => {
-    fetch("http://localhost:3000/signin", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        console.log(user);
-      })
-      .catch(err => console.log);
-  };
-
-  onEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    });
-  };
-  onPasswordChange = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  render() {
-    return <div />;
-  }
-}
-
-export default SignIn;
+export default TestComponent;

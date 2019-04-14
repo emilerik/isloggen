@@ -16,7 +16,7 @@ class Post extends React.Component {
   // }
 
   render() {
-    const { plats, betyg, kommentar } = this.props.post;
+    const { plats, betyg, kommentar, datum } = this.props.post;
     return (
       <tbody>
         <tr>
@@ -24,7 +24,7 @@ class Post extends React.Component {
           <td className="center aligned">{betyg}</td>
           <td className="center aligned">{kommentar}</td>
           <td className="center aligned">emilerik</td>
-          <td className="center aligned">31/03</td>
+          <td className="center aligned">{datum}</td>
         </tr>
       </tbody>
     );
