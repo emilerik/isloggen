@@ -45,7 +45,7 @@ class App extends Component {
           isLoggedIn={this.state.isLoggedIn}
           onRouteChange={this.onRouteChange}
         />
-        <div className="w-40 pa2">
+        <div className="w-50 pa2">
           {this.state.isLoggedIn ? (
             //console.log(this.state)
             <NewPost user_id={this.state.user.id} />

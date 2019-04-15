@@ -3,8 +3,6 @@ import {
   Button,
   Checkbox,
   Form,
-  Dropdown,
-  Menu,
   // eslint-disable-next-line
   Input,
   // eslint-disable-next-line
@@ -12,6 +10,18 @@ import {
   // eslint-disable-next-line
   Select
 } from "semantic-ui-react";
+
+const betygOptions = ["1", "2", "3", "4", "5"].map(betyg => ({
+  key: betyg,
+  text: betyg,
+  value: betyg
+}));
+
+const platsOptions = ["Drevviken", "Norrviken"].map(plats => ({
+  key: plats,
+  text: plats,
+  value: plats
+}));
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -30,16 +40,16 @@ class NewPost extends React.Component {
   //   this.setState({ user_id: event.target.value });
   // };
 
-  onChangeBetyg = event => {
-    this.setState({ betyg: event.target.value });
+  onChangeBetyg = (e, { value }) => {
+    this.setState({ betyg: value });
   };
 
-  onChangePlats = event => {
-    this.setState({ plats: event.target.value });
+  onChangePlats = (e, { value }) => {
+    this.setState({ plats: value });
   };
 
-  onChangeKommentar = event => {
-    this.setState({ kommentar: event.target.value });
+  onChangeKommentar = (e, { value }) => {
+    this.setState({ kommentar: value });
   };
 
   toggleForm = () => {
@@ -48,7 +58,7 @@ class NewPost extends React.Component {
 
   onSubmitPost = () => {
     if (this.state.kommentar) {
-      this.props.updateTable();
+      //this.props.updateTable();
       this.setState({ showForm: false, incorrectSubmission: false });
       const datum = new Date();
       console.log(this.state);
@@ -81,42 +91,26 @@ class NewPost extends React.Component {
               Stäng
             </Button>
             <Form className="pa4 br3 ba b--white mv3" direction="left">
-              <Form.Field>
-                <label>Plats</label>
-                <select
-                  name="plats"
-                  className="ui dropdown"
+              <Form.Group widths="equal">
+                <Form.Select
                   onChange={this.onChangePlats}
-                >
-                  <option value="Drevviken">Drevviken</option>
-                  <option value="Norrviken">Norrviken</option>
-                </select>
-              </Form.Field>
-              <Form.Field>
-                <label>Betyg</label>
-                <select
-                  name="location"
-                  className="ui dropdown"
-                  onChange={this.onChangeBetyg}
-                >
-                  <option value="5">5</option>
-                  <option value="4">4</option>
-                  <option value="3">3</option>
-                  <option value="2">2</option>
-                  <option value="1">1</option>
-                </select>
-              </Form.Field>
-              <Form.Field>
-                <label>Kommentar</label>
-                <textarea
-                  rows="4"
-                  placeholder=""
-                  onChange={this.onChangeKommentar}
+                  label="Plats"
+                  options={platsOptions}
                 />
-              </Form.Field>
-              <Button primary onClick={this.onSubmitPost}>
+                <Form.Select
+                  label="Betyg"
+                  onChange={this.onChangeBetyg}
+                  options={betygOptions}
+                />
+              </Form.Group>
+
+              <Form.TextArea
+                label="Kommentar"
+                onChange={this.onChangeKommentar}
+              />
+              <Form.Button primary onClick={this.onSubmitPost}>
                 Skicka
-              </Button>
+              </Form.Button>
               {this.state.incorrectSubmission ? (
                 <p className="red">Vänligen lämna en kommentar</p>
               ) : null}
