@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Header from "../components/Header/Header";
 import Posts from "../components/Posts/Posts";
 import NewPost from "../components/NewPost/NewPost";
+// eslint-disable-next-line
 import TestComponent from "./TestComponent";
 import "./App.css";
 import "tachyons";
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   user: {
     id: "",
     name: "",
@@ -51,7 +52,6 @@ class App extends Component {
             <NewPost user_id={this.state.user.id} />
           ) : null}
           <Posts />
-          <TestComponent user_id={this.state.user.id} />
         </div>
       </div>
     );

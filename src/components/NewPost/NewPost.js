@@ -1,7 +1,7 @@
 import React from "react";
+import { Modal } from "react-bootstrap";
 import {
   Button,
-  Checkbox,
   Form,
   // eslint-disable-next-line
   Input,
@@ -32,9 +32,17 @@ class NewPost extends React.Component {
       betyg: "",
       plats: "",
       showForm: false,
-      incorrectSubmission: false
+      incorrectSubmission: false,
+      showModal: false
     };
   }
+
+  toggleShow = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+      incorrectSubmission: false
+    });
+  };
 
   onChangeBetyg = (e, { value }) => {
     this.setState({ betyg: value });
@@ -48,15 +56,11 @@ class NewPost extends React.Component {
     this.setState({ kommentar: value });
   };
 
-  toggleForm = () => {
-    this.setState({ showForm: !this.state.showForm });
-  };
-
   onSubmitPost = () => {
     const { kommentar, betyg, plats } = this.state;
     if (kommentar && plats && betyg) {
       //this.props.updateTable();
-      this.setState({ showForm: false, incorrectSubmission: false });
+      this.toggleShow();
       const datum = new Date();
       fetch("http://localhost:3000/post", {
         method: "post",
@@ -81,12 +85,14 @@ class NewPost extends React.Component {
   render() {
     return (
       <div className="pv3 tc">
-        {this.state.showForm ? (
-          <div className="">
-            <Button className="f4 pointer white" onClick={this.toggleForm}>
-              Stäng
-            </Button>
-            <Form className="pa4 br3 ba b--white mv3" direction="left">
+        <Button primary onClick={this.toggleShow}>
+          Nytt inlägg
+        </Button>
+
+        <Modal show={this.state.showModal} onHide={this.toggleShow}>
+          <Modal.Body>
+            <h1 className="tc pa0 ma0 f3">Nytt Inlägg</h1>
+            <Form className="pa2 ma2" direction="left">
               <Form.Group widths="equal">
                 <Form.Select
                   onChange={this.onChangePlats}
@@ -104,24 +110,20 @@ class NewPost extends React.Component {
                 label="Kommentar"
                 onChange={this.onChangeKommentar}
               />
-              <Form.Button primary onClick={this.onSubmitPost}>
-                Skicka
-              </Form.Button>
               {this.state.incorrectSubmission ? (
                 <p className="red">Vänligen fyll i alla fält</p>
               ) : null}
+              <div className="tr">
+                <Button variant="secondary" onClick={this.toggleShow}>
+                  Avbryt
+                </Button>
+                <Button variant="primary" primary onClick={this.onSubmitPost}>
+                  Skicka
+                </Button>
+              </div>
             </Form>
-          </div>
-        ) : (
-          <Button
-            primary
-            type="submit"
-            className="f4 pointer white ma0"
-            onClick={this.toggleForm}
-          >
-            Nytt inlägg
-          </Button>
-        )}
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown, Form, Button } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 
 class Register extends React.Component {
   constructor(props) {
