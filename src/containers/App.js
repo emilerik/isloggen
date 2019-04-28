@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import Header from "../components/Header/Header";
 import Posts from "../components/Posts/Posts";
-import NewPost from "../components/NewPost/NewPost";
 // eslint-disable-next-line
 import TestComponent from "./TestComponent";
 import "./App.css";
 import "tachyons";
 
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   user: {
     id: "",
     name: "",
     email: "",
     postcount: 0
   },
-  route: "loggedOut"
+  route: "home"
 };
 
 class App extends Component {
@@ -31,28 +30,31 @@ class App extends Component {
     });
   };
 
+  onLogout = () => {
+    this.setState(initialState);
+  };
+
   onRouteChange = route => {
     this.setState({ route: route });
-    if (route === "logout") {
-      this.setState(initialState);
-    }
   };
 
   render() {
     return (
-      <div className="App flex flex-column items-center">
+      <div className="avenir App flex flex-column items-center">
         <Header
           onLogin={this.onLogin}
-          isLoggedIn={this.state.isLoggedIn}
+          onLogout={this.onLogout}
           onRouteChange={this.onRouteChange}
+          isLoggedIn={this.state.isLoggedIn}
+          user_id={this.state.user.id}
         />
-        <div className="w-50 pa2">
-          {this.state.isLoggedIn ? (
-            //console.log(this.state)
-            <NewPost user_id={this.state.user.id} />
-          ) : null}
-          <Posts />
-        </div>
+        {this.state.route === "home" ? (
+          <div className="w-50 pa2">
+            <Posts />
+          </div>
+        ) : this.state.route === "profile" ? (
+          <div />
+        ) : null}
       </div>
     );
   }

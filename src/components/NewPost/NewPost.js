@@ -84,14 +84,17 @@ class NewPost extends React.Component {
   };
   render() {
     return (
-      <div className="pv3 tc">
-        <Button primary onClick={this.toggleShow}>
+      <div className="ph3">
+        <p
+          className="tc br-pill temp pa3 pointer blue f4 bg-white"
+          onClick={this.toggleShow}
+        >
           Nytt inlägg
-        </Button>
+        </p>
 
         <Modal show={this.state.showModal} onHide={this.toggleShow}>
           <Modal.Body>
-            <h1 className="tc pa0 ma0 f3">Nytt Inlägg</h1>
+            <h1 className="tc pa2 mb2 f3">Skriv ett nytt inlägg</h1>
             <Form className="pa2 ma2" direction="left">
               <Form.Group widths="equal">
                 <Form.Select
