@@ -5,21 +5,23 @@ import "./Posts.css";
 class Posts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { posts: {} };
+    this.state = { posts: {}, serverStatus: "pending" };
   }
 
   componentDidMount() {
     fetch("http://localhost:3000/getposts")
       .then(response => response.json())
-      .then(posts => this.setState({ posts: posts }))
-      .catch(err => console.log(err));
+      .then(posts => {
+        this.setState({ posts: posts, serverStatus: "online" });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ serverStatus: "offline" });
+      });
   }
-  // {posts.map(post => {
-  //   return <Post post={post} />;
-  // })}
 
   render() {
-    const { posts } = this.state;
+    const { posts, serverStatus } = this.state;
     return (
       <div>
         {posts[0] ? (
@@ -37,7 +39,13 @@ class Posts extends React.Component {
               return <Post post={post} />;
             })}
           </table>
-        ) : null}
+        ) : serverStatus === "pending" ? (
+          <h1 className="white">Retreiving posts...</h1>
+        ) : serverStatus === "offline" ? (
+          <h1 className="white">No connection to server</h1>
+        ) : (
+          <h1 className="white">An unknown error occurred</h1>
+        )}
         {}
       </div>
     );

@@ -29,16 +29,12 @@ class NewPost extends React.Component {
     this.state = {
       user_id: 0,
       kommentar: "",
-      betyg: "5",
-      plats: "Drevviken",
+      betyg: "",
+      plats: "",
       showForm: false,
       incorrectSubmission: false
     };
   }
-
-  // onChangeUserId = event => {
-  //   this.setState({ user_id: event.target.value });
-  // };
 
   onChangeBetyg = (e, { value }) => {
     this.setState({ betyg: value });
@@ -57,11 +53,11 @@ class NewPost extends React.Component {
   };
 
   onSubmitPost = () => {
-    if (this.state.kommentar) {
+    const { kommentar, betyg, plats } = this.state;
+    if (kommentar && plats && betyg) {
       //this.props.updateTable();
       this.setState({ showForm: false, incorrectSubmission: false });
       const datum = new Date();
-      console.log(this.state);
       fetch("http://localhost:3000/post", {
         method: "post",
         headers: {
@@ -69,9 +65,9 @@ class NewPost extends React.Component {
         },
         body: JSON.stringify({
           user_id: this.props.user_id,
-          kommentar: this.state.kommentar,
-          betyg: this.state.betyg,
-          plats: this.state.plats,
+          kommentar: kommentar,
+          betyg: betyg,
+          plats: plats,
           datum: datum.toLocaleDateString()
         })
       })
@@ -112,7 +108,7 @@ class NewPost extends React.Component {
                 Skicka
               </Form.Button>
               {this.state.incorrectSubmission ? (
-                <p className="red">Vänligen lämna en kommentar</p>
+                <p className="red">Vänligen fyll i alla fält</p>
               ) : null}
             </Form>
           </div>

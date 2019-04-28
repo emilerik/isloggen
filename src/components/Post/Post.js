@@ -16,14 +16,14 @@ class Post extends React.Component {
   // }
 
   render() {
-    const { plats, betyg, kommentar, datum } = this.props.post;
+    const { plats, betyg, kommentar, datum, name } = this.props.post;
     return (
       <tbody>
         <tr>
           <td className="center aligned">{plats}</td>
           <td className="center aligned">{betyg}</td>
           <td className="center aligned">{kommentar}</td>
-          <td className="center aligned">emilerik</td>
+          <td className="center aligned">{name}</td>
           <td className="center aligned">{datum}</td>
         </tr>
       </tbody>

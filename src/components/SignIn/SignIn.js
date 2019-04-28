@@ -16,8 +16,7 @@ class SignIn extends React.Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.email,
-        password: this.state.password,
-        incorrectCredentials: false
+        password: this.state.password
       })
     })
       .then(response => response.json())

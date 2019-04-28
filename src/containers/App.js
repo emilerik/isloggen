@@ -51,7 +51,7 @@ class App extends Component {
             <NewPost user_id={this.state.user.id} />
           ) : null}
           <Posts />
-          <TestComponent />
+          <TestComponent user_id={this.state.user.id} />
         </div>
       </div>
     );

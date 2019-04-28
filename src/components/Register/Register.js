@@ -7,25 +7,45 @@ class Register extends React.Component {
     this.state = {
       email: "",
       name: "",
-      password: ""
+      password: "",
+      missingField: false,
+      incorrectSubmission: false
     };
   }
 
   onSubmitRegister = () => {
-    fetch("http://localhost:3000/register", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password
+    console.log(this.state);
+    const { name, email, password } = this.state;
+    console.log(Boolean(name && email && password));
+    if (name && email && password) {
+      this.setState({ missingField: false });
+      fetch("http://localhost:3000/register", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password
+        })
       })
-    })
-      .then(response => response.json())
-      .then(user => {
-        console.log(user);
-      })
-      .catch(err => console.log);
+        .then(response =>
+          response.ok
+            ? response.json()
+            : this.setState({ incorrectSubmission: true })
+        )
+        .then(user => {
+          console.log(user);
+          this.setState({ incorrectSubmission: false });
+        })
+        .catch(err => {
+          console.log(err);
+          console.log("error raised");
+          this.setState({ missingField: true });
+        });
+    } else {
+      this.setState({ missingField: true });
+    }
+    console.log(this.state);
   };
 
   onEmailChange = event => {
@@ -66,7 +86,6 @@ class Register extends React.Component {
               name="name"
               id="name"
               label="Användarnamn"
-              placeholder=""
               onChange={this.onNameChange}
             />
             <Form.Input
@@ -74,12 +93,10 @@ class Register extends React.Component {
               name="email-address"
               id="email-address"
               label="Email"
-              placeholder=""
               onChange={this.onEmailChange}
             />
             <Form.Input
               label="Lösenord"
-              placeholder=""
               type="password"
               name="password"
               id="password"
@@ -88,6 +105,11 @@ class Register extends React.Component {
             <Button onClick={this.onSubmitRegister} primary>
               Registera nu
             </Button>
+            {this.state.missingField ? (
+              <p className="red tc">Fyll i alla fält</p>
+            ) : this.state.incorrectSubmission ? (
+              <p className="red tc">Det gick inte att registrera</p>
+            ) : null}
           </Form>
         </div>
       </div>
