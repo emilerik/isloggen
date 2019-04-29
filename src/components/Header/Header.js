@@ -3,6 +3,7 @@ import SignIn from "../SignIn/SignIn";
 import Register from "../Register/Register";
 import "./Header.css";
 import NewPost from "../NewPost/NewPost";
+import Nav from "react-bootstrap/Nav";
 
 const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
   console.log(onRouteChange);
@@ -13,13 +14,8 @@ const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
     >
       <div>
         {isLoggedIn ? (
-          <div className="w-third fr flex items-center justify-end pa3 ma0">
-            <p
-              className="ph3 f4 pointer ma0"
-              onClick={() => onRouteChange("profile")}
-            >
-              Min profil
-            </p>
+          <div className="w-third fr flex items-center justify-end ph3 ma0">
+            <NewPost user_id={user_id} />
             <p className="ph3 f4 pointer" onClick={() => onLogout()}>
               Logga ut
             </p>
@@ -38,8 +34,20 @@ const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
         ❄ Isinfo ❄
       </div>
       {isLoggedIn ? (
-        <div className="w-third fr flex items-center justify-start ph3 ma0">
-          <NewPost user_id={user_id} />
+        <div className="w-third fr flex items-center justify-start pa3 ma0">
+          <p
+            href="/#"
+            className="ph3 f4 pointer ma0"
+            onClick={() => onRouteChange("home")}
+          >
+            Hem
+          </p>
+          <p
+            className="ph3 f4 pointer ma0"
+            onClick={() => onRouteChange("profile")}
+          >
+            Min profil
+          </p>
         </div>
       ) : null}
     </header>

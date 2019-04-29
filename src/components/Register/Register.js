@@ -80,7 +80,7 @@ class Register extends React.Component {
           className="dropdown-menu dropdown-menu-right ma3"
           aria-labelledby="dropdownMenuButton"
         >
-          <Form className="pa3" direction="left">
+          <Form className="pa3 ma2 mt0" direction="left">
             <Form.Input
               type="name"
               name="name"

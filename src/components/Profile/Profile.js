@@ -1,92 +1,23 @@
 import React from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
+import Posts from "../Posts/Posts";
 
-class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
+const Profile = ({ user }) => (
+  <div className="">
+    <div className="fl w-30 flex justify-center">
+      <Card className="">
+        <Image src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg" />
+        <Card.Content className="">
+          <h1 className="ma1">{user.name}</h1>
+          <p className="gray">Gick med April 2019</p>
+          <p>{user.postcount} inlägg</p>
+        </Card.Content>
+      </Card>
+    </div>
+    <div className="fl w-40">
+      <Posts />
+    </div>
+  </div>
+);
 
-  onSubmitSignin = () => {
-    fetch("http://localhost:3000/signin", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user.id) {
-          this.props.onLogin(user);
-          this.setState({
-            incorrectCredentials: false
-          });
-        } else {
-          this.setState({
-            incorrectCredentials: true
-          });
-        }
-      })
-      .catch(err => console.log(err));
-  };
-
-  onEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    });
-  };
-  onPasswordChange = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  render() {
-    return (
-      <div className="dropdown ph3">
-        <p
-          className="f4 pointer white ma0"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Logga in
-        </p>
-        <div className="dropdown-menu ma3" aria-labelledby="dropdownMenuButton">
-          <Form className="pa3" direction="left">
-            <Form.Input
-              type="email"
-              name="email-address"
-              id="email-address"
-              onChange={this.onEmailChange}
-              label="Email"
-              placeholder=""
-            />
-            <Form.Input
-              onChange={this.onPasswordChange}
-              type="password"
-              name="password"
-              id="password"
-              label="Lösenord"
-              placeholder=""
-            />
-            <Button onClick={this.onSubmitSignin} primary>
-              Logga in
-            </Button>
-            {this.state.incorrectCredentials ? (
-              <p className="red tc">Fel e-post eller lösenord</p>
-            ) : null}
-          </Form>
-        </div>
-      </div>
-    );
-  }
-}
-
-export default SignIn;
+export default Profile;

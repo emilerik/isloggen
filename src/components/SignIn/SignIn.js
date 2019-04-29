@@ -59,7 +59,7 @@ class SignIn extends React.Component {
           Logga in
         </p>
         <div className="dropdown-menu ma3" aria-labelledby="dropdownMenuButton">
-          <Form className="pa3" direction="left">
+          <Form className="pa3 ma2 mt0" direction="left">
             <Form.Input
               type="email"
               name="email-address"

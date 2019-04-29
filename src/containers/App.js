@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "../components/Header/Header";
 import Posts from "../components/Posts/Posts";
+import Profile from "../components/Profile/Profile";
 // eslint-disable-next-line
 import TestComponent from "./TestComponent";
 import "./App.css";
@@ -49,11 +50,13 @@ class App extends Component {
           user_id={this.state.user.id}
         />
         {this.state.route === "home" ? (
-          <div className="w-50 pa2">
+          <div className="w-50 pa4">
             <Posts />
           </div>
         ) : this.state.route === "profile" ? (
-          <div />
+          <div className="w-100">
+            <Profile user={this.state.user} />
+          </div>
         ) : null}
       </div>
     );
