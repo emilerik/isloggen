@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("this is a server");
 });
-app.get("/getposts", getPosts.handleGetPosts(db));
+app.get("/getposts/:id", getPosts.handleGetPosts(db));
 app.post("/signin", signin.handleSignin(db, bcrypt));
 app.post("/register", register.handleRegister(db, bcrypt));
 app.post("/post", post.handlePost(db));

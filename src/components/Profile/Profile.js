@@ -15,7 +15,7 @@ const Profile = ({ user }) => (
       </Card>
     </div>
     <div className="fl w-40">
-      <Posts />
+      <Posts user_id={user.id} />
     </div>
   </div>
 );

@@ -76,7 +76,6 @@ class NewPost extends React.Component {
         })
       })
         .then(res => res.json())
-        .then(console.log)
         .catch(err => console.log(`There was an error: ${err}`));
     } else {
       this.setState({ incorrectSubmission: true });

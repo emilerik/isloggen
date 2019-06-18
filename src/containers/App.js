@@ -51,7 +51,7 @@ class App extends Component {
         />
         {this.state.route === "home" ? (
           <div className="w-50 pa4">
-            <Posts />
+            <Posts user_id="7" />
           </div>
         ) : this.state.route === "profile" ? (
           <div className="w-100">
