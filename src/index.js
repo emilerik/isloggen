@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
+import createAuth0Client from "@auth0/auth0-spa-js";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

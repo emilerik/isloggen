@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 //End-points
 app.get("/", (req, res) => {
-  res.send("this is a server");
+  res.send("this is a server lol");
 });
 app.get("/getposts/:id", getPosts.handleGetPosts(db));
 app.post("/signin", signin.handleSignin(db, bcrypt));
@@ -41,8 +41,8 @@ app.post("/post", post.handlePost(db));
 app.put("/image", image.handleImage(db));
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res));
 */
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`app is running on port ${process.env.PORT}`);
+app.listen(3000, () => {
+  console.log(`app is running on port 3000`);
 });
 
 /*
