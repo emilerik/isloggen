@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Header from "../components/Header/Header";
+import HeaderAuth from "../components/Header/HeaderAuth";
 import Posts from "../components/Posts/Posts";
 import Profile from "../components/Profile/Profile";
 // eslint-disable-next-line
 import TestComponent from "./TestComponent";
 import "./App.css";
 import "tachyons";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const initialState = {
   isLoggedIn: false,
@@ -42,7 +44,7 @@ class App extends Component {
   render() {
     return (
       <div className="avenir App flex flex-column items-center">
-        <Header
+        <HeaderAuth
           onLogin={this.onLogin}
           onLogout={this.onLogout}
           onRouteChange={this.onRouteChange}
