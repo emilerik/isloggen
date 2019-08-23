@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header/Header";
 import HeaderAuth from "../components/Header/HeaderAuth";
 import Posts from "../components/Posts/Posts";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Profile from "../components/Profile/Profile";
 // eslint-disable-next-line
 import TestComponent from "./TestComponent";
@@ -44,22 +45,21 @@ class App extends Component {
   render() {
     return (
       <div className="avenir App flex flex-column items-center">
-        <HeaderAuth
-          onLogin={this.onLogin}
-          onLogout={this.onLogout}
-          onRouteChange={this.onRouteChange}
-          isLoggedIn={this.state.isLoggedIn}
-          user_id={this.state.user.id}
-        />
-        {this.state.route === "home" ? (
-          <div className="w-50 pa4">
-            <Posts user_id="7" />
-          </div>
-        ) : this.state.route === "profile" ? (
-          <div className="w-100">
-            <Profile user={this.state.user} />
-          </div>
-        ) : null}
+        <BrowserRouter>
+          <HeaderAuth
+            onLogin={this.onLogin}
+            onLogout={this.onLogout}
+            onRouteChange={this.onRouteChange}
+            user_id={this.state.user.id}
+          />
+          <Switch>
+            <Route path="/" exact render={() => <Posts user_id="7" />} />
+            <PrivateRoute
+              path="/profile"
+              render={() => <Profile user={this.state.user} />}
+            />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

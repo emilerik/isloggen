@@ -1,7 +1,9 @@
-const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
+const express = require("express");
+const jwt = require("express-jwt");
+const jwksRsa = require("jwks-rsa");
 const knex = require("knex");
 
 //Controllers
@@ -25,9 +27,29 @@ const db = knex({
 
 const app = express();
 
+// Set up Auth0 configuration
+const authConfig = {
+  domain: "isinfo.eu.auth0.com",
+  audience: "YOUR_API_IDENTIFIER"
+};
+
 //Middleware
 app.use(cors());
 app.use(bodyParser.json());
+// Define middleware that validates incoming bearer tokens
+// using JWKS from isinfo.eu.auth0.com
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+  }),
+
+  audience: authConfig.audience,
+  issuer: `https://${authConfig.domain}/`,
+  algorithm: ["RS256"]
+});
 
 //End-points
 app.get("/", (req, res) => {
@@ -41,8 +63,15 @@ app.post("/post", post.handlePost(db));
 app.put("/image", image.handleImage(db));
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res));
 */
-app.listen(3000, () => {
-  console.log(`app is running on port 3000`);
+// Define an endpoint that must be called with an access token
+app.get("/api/external", checkJwt, (req, res) => {
+  res.send({
+    msg: "Your Access Token was successfully validated!"
+  });
+});
+
+app.listen(3001, () => {
+  console.log(`app is running on port 3001`);
 });
 
 /*

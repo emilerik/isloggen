@@ -6,16 +6,16 @@ import { useAuth0 } from "../../react-auth0-wrapper";
 const Profile = () => {
   const { loading, user } = useAuth0();
   if (loading || !user) {
-    return "Loading...";
+    return <p>"Loading..."</p>;
   }
 
   return (
-    <div className="">
+    <div className="w-100">
       <div className="fl w-30 flex justify-center">
         <Card className="">
-          <Image src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg" />
+          <Image src={user.picture} />
           <Card.Content className="">
-            <h1 className="ma1">{user.name}</h1>
+            <h1 className="ma1">{user.given_name}</h1>
             <p className="gray">Gick med April 2019</p>
             <p>{user.postcount} inlägg</p>
           </Card.Content>

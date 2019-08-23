@@ -5,11 +5,13 @@ import "./HeaderAuth.css";
 import NewPost from "../NewPost/NewPost";
 import Nav from "react-bootstrap/Nav";
 import { useAuth0 } from "../../react-auth0-wrapper";
+import { Link } from "react-router-dom";
 
 const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
-  console.log(onRouteChange);
-
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+  console.log("USEAUTH0: ");
+  console.log(useAuth0());
 
   return (
     <header
@@ -26,32 +28,27 @@ const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
           </div>
         ) : (
           <div className="w-third fr flex justify-end pa3 ma0">
-            <button onClick={() => loginWithRedirect({})}>Log in</button>
+            <p
+              className="ph3 f4 pointer ma0"
+              onClick={() => loginWithRedirect({})}
+            >
+              Logga in
+            </p>
             <Register />
           </div>
         )}
       </div>
-      <div
-        className="w-third fr f2 pa3 tc pointer"
-        onClick={() => onRouteChange("home")}
-      >
-        ❄ Isinfo ❄
-      </div>
+      <Link to="/">
+        <div className="w-third fr f2 pa3 tc white ma0">❄ Isinfo ❄</div>
+      </Link>
       {isAuthenticated && (
         <div className="w-third fr flex items-center justify-start pa3 ma0">
-          <p
-            href="/#"
-            className="ph3 f4 pointer ma0"
-            onClick={() => onRouteChange("home")}
-          >
-            Hem
-          </p>
-          <p
-            className="ph3 f4 pointer ma0"
-            onClick={() => onRouteChange("profile")}
-          >
-            Min profil
-          </p>
+          <Link to="/">
+            <p className="ph3 f4 ma0 white">Hem</p>
+          </Link>
+          <Link to="/profile">
+            <p className="ph3 f4 ma0 white">Min profil</p>
+          </Link>
         </div>
       )}
     </header>

@@ -9,13 +9,13 @@ class Posts extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/getposts/${this.props.user_id}`)
+    fetch(`http://localhost:3001/getposts/${this.props.user_id}`)
       .then(response => response.json())
       .then(posts => {
         this.setState({ posts: posts, serverStatus: "online" });
       })
       .catch(err => {
-        console.log(err);
+        //console.log(err);
         this.setState({ serverStatus: "offline" });
       });
   }
@@ -23,9 +23,9 @@ class Posts extends React.Component {
   render() {
     const { posts, serverStatus } = this.state;
     return (
-      <div>
+      <div classname="w-50 pa4">
         {posts[0] ? (
-          <table className="ui celled table">
+          <table className="ui table">
             <thead>
               <tr>
                 <th className="center aligned">Plats</th>
