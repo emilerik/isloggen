@@ -7,11 +7,15 @@ import Nav from "react-bootstrap/Nav";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
 
-const Header = ({ user_id }) => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+const Header = () => {
+  const { isAuthenticated, loginWithRedirect, logout, loading, user } = useAuth0();
 
   console.log("USEAUTH0: ");
   console.log(useAuth0());
+
+  if (isAuthenticated) {
+    console.log(user);
+  }
 
   return (
     <header
@@ -19,9 +23,9 @@ const Header = ({ user_id }) => {
       style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
     >
       <div>
-        {isAuthenticated ? (
+        {(isAuthenticated && !loading) ? (
           <div className="w-third fr flex items-center justify-end ph3 ma0">
-            <NewPost user_id={user_id} />
+            <NewPost user_email={user.email} />
             <p className="ph3 f4 pointer" onClick={() => logout()}>
               Logga ut
             </p>

@@ -16,7 +16,7 @@ const App = () => {
       <BrowserRouter>
         <HeaderAuth />
         <Switch>
-          <Route path="/" exact render={() => <Posts user_id="7" />} />
+          <Route path="/" exact render={() => <Posts user_email="emil.eriksson41@gmail.com" />} />
           <PrivateRoute path="/profile" render={() => <Profile />} />
         </Switch>
       </BrowserRouter>

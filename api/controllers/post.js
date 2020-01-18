@@ -1,12 +1,12 @@
 const handlePost = db => (req, res) => {
-  const { user_id, kommentar, betyg, plats, datum } = req.body;
+  const { user_email, kommentar, betyg, plats, datum } = req.body;
   if (!kommentar) {
     return res.status(400).json("incorrect form submission");
   }
   db.transaction(trx => {
     trx
       .insert({
-        user_id: user_id,
+        user_email: user_email,
         kommentar: kommentar,
         betyg: betyg,
         plats: plats,
@@ -16,10 +16,10 @@ const handlePost = db => (req, res) => {
       .returning("id")
       .then(postId => {
         return trx("users")
-          .where("id", "=", user_id)
+          .where("email", "=", user_email)
           .increment("postcount", 1)
           .then(() => {
-            res.json(`Successfully added post from user ${user_id}`);
+            res.json(`Successfully added post from user ${user_email}`);
           });
       })
       .then(trx.commit)

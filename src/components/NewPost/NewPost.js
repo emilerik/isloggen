@@ -27,7 +27,7 @@ class NewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: 0,
+      user_email: "",
       kommentar: "",
       betyg: "",
       plats: "",
@@ -62,13 +62,13 @@ class NewPost extends React.Component {
       //this.props.updateTable();
       this.toggleShow();
       const datum = new Date();
-      fetch("http://localhost:3000/post", {
+      fetch("http://localhost:3001/post", {
         method: "post",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          user_id: this.props.user_id,
+          user_email: this.props.user_email,
           kommentar: kommentar,
           betyg: betyg,
           plats: plats,
@@ -88,7 +88,7 @@ class NewPost extends React.Component {
           className="tc br-pill temp pa3 pointer blue f4 bg-white"
           onClick={this.toggleShow}
         >
-          Nytt inlägg
+          Ny rapport
         </p>
 
         <Modal show={this.state.showModal} onHide={this.toggleShow}>
