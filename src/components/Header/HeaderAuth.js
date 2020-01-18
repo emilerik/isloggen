@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const { isAuthenticated, loginWithRedirect, logout, loading, user } = useAuth0();
 
-  console.log("USEAUTH0: ");
+  /*console.log("USEAUTH0: ");
   console.log(useAuth0());
 
   if (isAuthenticated) {
     console.log(user);
-  }
+  }*/
 
   return (
     <header

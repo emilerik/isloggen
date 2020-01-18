@@ -64,7 +64,7 @@ export const Auth0Provider = ({
     setIsAuthenticated(true);
     setUser(user);
   };
-  console.log(auth0Client);
+  //console.log(auth0Client);
   return (
     <Auth0Context.Provider
       value={{

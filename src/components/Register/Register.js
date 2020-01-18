@@ -14,9 +14,9 @@ class Register extends React.Component {
   }
 
   onSubmitRegister = () => {
-    console.log(this.state);
+    //console.log(this.state);
     const { name, email, password } = this.state;
-    console.log(Boolean(name && email && password));
+    //console.log(Boolean(name && email && password));
     if (name && email && password) {
       this.setState({ missingField: false });
       fetch("http://localhost:3000/register", {
@@ -34,7 +34,7 @@ class Register extends React.Component {
             : this.setState({ incorrectSubmission: true })
         )
         .then(user => {
-          console.log(user);
+          //console.log(user);
           this.setState({ incorrectSubmission: false });
         })
         .catch(err => {
@@ -45,7 +45,7 @@ class Register extends React.Component {
     } else {
       this.setState({ missingField: true });
     }
-    console.log(this.state);
+    //console.log(this.state);
   };
 
   onEmailChange = event => {
