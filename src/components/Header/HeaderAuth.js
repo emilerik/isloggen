@@ -7,7 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
 
-const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
+const Header = ({ user_id }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   console.log("USEAUTH0: ");

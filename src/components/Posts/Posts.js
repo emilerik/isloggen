@@ -9,7 +9,8 @@ class Posts extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/getposts/${this.props.user_id}`)
+    console.log(this.props.user_email);
+    fetch(`http://localhost:3001/getposts/${this.props.user_email}`)
       .then(response => response.json())
       .then(posts => {
         this.setState({ posts: posts, serverStatus: "online" });

@@ -55,7 +55,7 @@ const checkJwt = jwt({
 app.get("/", (req, res) => {
   res.send("this is a server lol");
 });
-app.get("/getposts/:id", getPosts.handleGetPosts(db));
+app.get("/getposts/:email", getPosts.handleGetPosts(db));
 app.post("/signin", signin.handleSignin(db, bcrypt));
 app.post("/register", register.handleRegister(db, bcrypt));
 app.post("/post", post.handlePost(db));

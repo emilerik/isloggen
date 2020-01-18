@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Image } from "semantic-ui-react";
 import Posts from "../Posts/Posts";
 import { useAuth0 } from "../../react-auth0-wrapper";
@@ -22,7 +22,7 @@ const Profile = () => {
         </Card>
       </div>
       <div className="fl w-40">
-        <Posts user_id={user.id} />
+        <Posts user_email={user.email} />
       </div>
     </div>
   );

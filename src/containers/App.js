@@ -10,59 +10,18 @@ import "./App.css";
 import "tachyons";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-const initialState = {
-  isLoggedIn: false,
-  user: {
-    id: "",
-    name: "",
-    email: "",
-    postcount: 0
-  },
-  route: "home"
+const App = () => {
+  return (
+    <div className="avenir App flex flex-column items-center">
+      <BrowserRouter>
+        <HeaderAuth />
+        <Switch>
+          <Route path="/" exact render={() => <Posts user_id="7" />} />
+          <PrivateRoute path="/profile" render={() => <Profile />} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 };
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
-
-  onLogin = user => {
-    this.setState({
-      isLoggedIn: true,
-      user: user
-    });
-  };
-
-  onLogout = () => {
-    this.setState(initialState);
-  };
-
-  onRouteChange = route => {
-    this.setState({ route: route });
-  };
-
-  render() {
-    return (
-      <div className="avenir App flex flex-column items-center">
-        <BrowserRouter>
-          <HeaderAuth
-            onLogin={this.onLogin}
-            onLogout={this.onLogout}
-            onRouteChange={this.onRouteChange}
-            user_id={this.state.user.id}
-          />
-          <Switch>
-            <Route path="/" exact render={() => <Posts user_id="7" />} />
-            <PrivateRoute
-              path="/profile"
-              render={() => <Profile user={this.state.user} />}
-            />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
-  }
-}
 
 export default App;
