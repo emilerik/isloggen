@@ -5,11 +5,13 @@ const handleGetPosts = db => (req, res) => {
             .from("posts")
             .where("user_email", email)
             .innerJoin("users", "users.email", "posts.user_email")
+            .orderBy("datum","DESC")
             .then(posts => res.json(posts));
     } else {
         db.select("kommentar", "betyg", "plats", "datum", "name")
             .from("posts")
             .innerJoin("users", "users.email", "posts.user_email")
+            .orderBy("datum","DESC")
             .then(posts => res.json(posts));
     }
 };

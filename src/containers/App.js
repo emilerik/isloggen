@@ -10,8 +10,11 @@ import "./App.css";
 import "tachyons";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-const App = () => {
-  return (
+class App extends Component {
+    render(){
+
+    console.log("location: " + this.props.location);
+    return (
     <div className="avenir App flex flex-column items-center">
       <BrowserRouter>
         <HeaderAuth />
@@ -22,6 +25,7 @@ const App = () => {
       </BrowserRouter>
     </div>
   );
+    }
 };
 
 export default App;
