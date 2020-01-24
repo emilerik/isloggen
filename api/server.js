@@ -16,29 +16,27 @@ const getPosts = require("./controllers/getPosts.js");
 
 //Establishing database connection
 const db = knex({
-  client: "pg",
-  connection: {
-    host: "127.0.0.1",
-    user: "",
-    password: "",
-    database: "isinfo-db"
-  }
+    client: 'pg',
+    connection: {
+        connectionString: process.env.DATABASE_URL,
+        ssl: true
+    }
 });
 
 const app = express();
 
 // Set up Auth0 configuration
-const authConfig = {
+/*const authConfig = {
   domain: "isinfo.eu.auth0.com",
   audience: "YOUR_API_IDENTIFIER"
-};
+};*/
 
 //Middleware
 app.use(cors());
 app.use(bodyParser.json());
 // Define middleware that validates incoming bearer tokens
 // using JWKS from isinfo.eu.auth0.com
-const checkJwt = jwt({
+/*const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
@@ -49,11 +47,11 @@ const checkJwt = jwt({
   audience: authConfig.audience,
   issuer: `https://${authConfig.domain}/`,
   algorithm: ["RS256"]
-});
+});*/
 
 //End-points
 app.get("/", (req, res) => {
-  res.send("this is a server lol");
+  res.send("this is a server");
 });
 app.get("/getposts/:email", getPosts.handleGetPosts(db));
 app.get("/getposts/", getPosts.handleGetPosts(db));
@@ -64,17 +62,19 @@ app.post("/post", post.handlePost(db));
 app.put("/image", image.handleImage(db));
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res));
 */
+
 // Define an endpoint that must be called with an access token
-app.get("/api/external", checkJwt, (req, res) => {
+/*app.get("/api/external", checkJwt, (req, res) => {
   res.send({
     msg: "Your Access Token was successfully validated!"
   });
-});
+});*/
 
-app.listen(3001, () => {
-  console.log(`app is running on port 3001`);
-});
+const PORT = process.env.PORT || 3001;
 
+app.listen(PORT, () => {
+    console.log(`app is running on port ${PORT}`);
+});
 /*
 / --> "this is working"
 /signin --> POST = success/fail
