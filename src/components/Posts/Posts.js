@@ -14,8 +14,8 @@ class Posts extends React.Component {
         var promise;
         //Check if all posts should be retrieved or user specific posts
         this.props.user_email ?
-            promise = fetch(`http://localhost:3001/getposts/${this.props.user_email}`)
-            : promise = fetch(`http://localhost:3001/getposts`);
+            promise = fetch(`https://isinfo.herokuapp.com/${this.props.user_email}`)
+            : promise = fetch(`https://isinfo.herokuapp.com/getposts`);
         //Get posts
         promise.then(response => response.json())
             .then(posts => {

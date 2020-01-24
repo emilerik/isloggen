@@ -10,7 +10,7 @@ class Post extends React.Component {
   }
 
   // componentDidMount() {
-  //   fetch("http://localhost:3000/getposts")
+  //   fetch("https://isinfo.herokuapp.com/getposts")
   //     .then(response => response.json())
   //     .then(post => this.setState({ post: post }));
   // }
