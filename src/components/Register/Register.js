@@ -90,7 +90,7 @@ class Register extends React.Component {
                 <p
                     className="ph3 f4 pointer ma0"
                     onClick={() => lock.show()}>
-                    Registrera dig
+                    Registrera
                 </p>
             </div>
         );
