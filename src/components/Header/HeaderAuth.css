@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: aqua;
+}
+
+.title {
+  padding: 1rem;
+  padding-left: 2rem;
+  color: #d9d9e0;
+}
+
+.navbar {
+  justify-self: flex-end;
+  display: flex;
+  list-style: none;
+  padding: 16px;
+}
+
+.navbar li {
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  border-bottom: 4px solid transparent;
+}
+
+.Nav {
+  color: white;
+}

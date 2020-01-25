@@ -6,7 +6,7 @@ import NewPost from "../NewPost/NewPost";
 import Nav from "react-bootstrap/Nav";
 
 const Header = ({ onLogout, onLogin, isLoggedIn, onRouteChange, user_id }) => {
-  console.log(onRouteChange);
+  //console.log(onRouteChange);
   return (
     <header
       className="w-100 white pa3 ph5 mh2 mt0 mb2 h-ns"
