@@ -21,3 +21,12 @@ registrera en användare!!
 *Nästa gång*
 * Lista ut vad som egentligen försiggår på Zeit...
 * Göra så att användare som registrerar sig över auth0 också läggs in i databasen
+
+---
+
+###25/1/19 - fixa deprecated
+Har idag gjort en deprecated-branch för den gamla lösningen av autentisering. Kände att jag ville ha kvar den ifall jag återvänder till den senare.
+Lyckades även splitta upp front-end, alltså rotmappen för isinfo, från dess api som låg i isinfo/api. Gjorde mha en gitignore. För närvarande är
+nu frontend uppe på github, och därmed även online på Zeit Now. Api:n ligger istället uppe på heroku. Tycker att det funkar rätt smidigt.
+Angående gårdagens fråga: Zeit har en git integration feature, så att så fort jag pushar till GH så läggs senaste versionen upp. Rätt najs, kan jag tycka.
+
