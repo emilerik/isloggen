@@ -62,7 +62,7 @@ class NewPost extends React.Component {
       //this.props.updateTable();
       this.toggleShow();
       const datum = new Date();
-      fetch("http://localhost:3001/post", {
+      fetch("https://isinfo.herokuapp.com/post", {
         method: "post",
         headers: {
           "Content-Type": "application/json"
