@@ -19,6 +19,7 @@
 .env.production.local
 .idea/
 logfile
+#api/
 
 npm-debug.log*
 yarn-debug.log*
