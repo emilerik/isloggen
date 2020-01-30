@@ -27,7 +27,6 @@ class NewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_email: "",
       kommentar: "",
       betyg: "",
       plats: "",

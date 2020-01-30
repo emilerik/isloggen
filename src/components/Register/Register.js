@@ -1,27 +1,19 @@
 import React from "react";
 import {Auth0Lock} from "auth0-lock";
 
-var options = {
+const options = {
     initialScreen: 'signUp',
     allowLogin: false,
     theme: {
         logo: 'https://projecthydro.org/wp-content/uploads/2019/01/snowflake-300x300.png',
         primaryColor: '#1394FF'
     },
+    language: 'sv',
     languageDictionary: {
         emailInputPlaceholder: "din emailadress",
-        title: "Isinfo",
-        loginLabel: 'Logga in',
-        loginSubmitLabel: 'Logga in',
-        databaseAlternativeSignUpInstructions: 'eller',
-        signUpWithLabel: 'Registrera dig med %s',
         signUpTitle: 'Isinfo',
-        signUpLabel: 'Registrera dig',
-        signUpTerms: '',
-        signUpSubmitLabel: 'Registrera nu',
-        usernameInputPlaceholder: 'ditt användarnamn',
-        passwordInputPlaceholder: 'ditt lösenord',
-        usernameOrEmailInputPlaceholder: 'användarnamn/email'
+        signUpTerms: 'OBS! Utgå alltid från din egen kunskap och bedömning när du åker på naturisar. ' +
+            'Isinfo tar inget ansvar för rapporterna du skriver eller läser på forumet.',
     },
 };
 

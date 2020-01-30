@@ -11,10 +11,10 @@ class Posts extends React.Component {
 
     componentDidMount() {
         console.log(this.props.user_email);
-        var promise;
+        let promise;
         //Check if all posts should be retrieved or user specific posts
         this.props.user_email ?
-            promise = fetch(`https://isinfo.herokuapp.com/${this.props.user_email}`)
+            promise = fetch(`https://isinfo.herokuapp.com/getposts?email=${this.props.user_email}`)
             : promise = fetch(`https://isinfo.herokuapp.com/getposts`);
         //Get posts
         promise.then(response => response.json())
@@ -46,9 +46,9 @@ class Posts extends React.Component {
                         })}
                     </table>
                 ) : serverStatus === "pending" ? (
-                    <h1 className="white">Retreiving posts...</h1>
+                    <h1 className="white">Hämtar israpporter...</h1>
                 ) : serverStatus === "offline" ? (
-                    <h1 className="white">No connection to server</h1>
+                    <h1 className="white">Inga israpporter att visa</h1>
                 ) : (
                     <h1 className="white">An unknown error occurred</h1>
                 )}

@@ -10,6 +10,10 @@ import {Link} from "react-router-dom";
 const Header = () => {
     const {isAuthenticated, loginWithRedirect, loginWithPopup, logout, loading, user} = useAuth0();
 
+    if (loading) {
+        return (<div>Loading...</div>);
+    }
+
     return (
         <header
             className="w-100 white pa3 ph5 mh2 mt0 mb2 h-ns"

@@ -25,8 +25,10 @@ registrera en användare!!
 ---
 
 ###25/1/19 - fixa deprecated
-Har idag gjort en deprecated-branch för den gamla lösningen av autentisering. Kände att jag ville ha kvar den ifall jag återvänder till den senare.
-Lyckades även splitta upp front-end, alltså rotmappen för isinfo, från dess api som låg i isinfo/api. Gjorde mha en gitignore. För närvarande är
+* Har idag gjort en deprecated-branch för den gamla lösningen av autentisering. Kände att jag ville ha kvar den ifall jag återvänder till den senare.
+* Lyckades även splitta upp front-end, alltså rotmappen för isinfo, från dess api som låg i isinfo/api. Gjorde mha en gitignore. För närvarande är
 nu frontend uppe på github, och därmed även online på Zeit Now. Api:n ligger istället uppe på heroku. Tycker att det funkar rätt smidigt.
-Angående gårdagens fråga: Zeit har en git integration feature, så att så fort jag pushar till GH så läggs senaste versionen upp. Rätt najs, kan jag tycka.
+* Angående gårdagens fråga: Zeit har en git integration feature, så att så fort jag pushar till GH så läggs senaste versionen upp. Rätt najs, kan jag tycka.
+* Fixat i princip hela flödet för registrera/logga in nu, inklusive regga till min egen databas (whoo!)
+* 
 
