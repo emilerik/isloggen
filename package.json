@@ -8,7 +8,6 @@
     "@material-ui/core": "^3.9.4",
     "auth0-lock": "^11.20.3",
     "bootstrap": "^4.4.1",
-    "gh-pages": "^2.2.0",
     "now": "^15.8.7",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
@@ -34,5 +33,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  }
 }
