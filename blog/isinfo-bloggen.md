@@ -1,6 +1,6 @@
 #ISINFO-BLOGGEN
 
-###24/1/19 - få upp db på heroku
+###24/1/20 - få upp db på heroku
 *Status*
 * Servern är deployad på Heroku tillsammans med databasen, men det går inte att öppna appen via URLen. 
 Okänt fel dyker upp när man försöker att starta den.
@@ -24,11 +24,15 @@ registrera en användare!!
 
 ---
 
-###25/1/19 - fixa deprecated
+###25/1/20 - fixa deprecated
 * Har idag gjort en deprecated-branch för den gamla lösningen av autentisering. Kände att jag ville ha kvar den ifall jag återvänder till den senare.
 * Lyckades även splitta upp front-end, alltså rotmappen för isinfo, från dess api som låg i isinfo/api. Gjorde mha en gitignore. För närvarande är
 nu frontend uppe på github, och därmed även online på Zeit Now. Api:n ligger istället uppe på heroku. Tycker att det funkar rätt smidigt.
 * Angående gårdagens fråga: Zeit har en git integration feature, så att så fort jag pushar till GH så läggs senaste versionen upp. Rätt najs, kan jag tycka.
 * Fixat i princip hela flödet för registrera/logga in nu, inklusive regga till min egen databas (whoo!)
-* 
+
+###1/2/20 - responsiveness
+Dags att idag göra sidan lite responsive! Dagens att göra:
+* Ändra strukturen på header så att alla menyitems ligger på en sida
+* Göra nån slags media query så att när skärmen blir tillräckligt liten hamnar menygrejer i en knapp 
 
