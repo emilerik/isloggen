@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "../Post/Post";
+import {Table} from "react-bootstrap";
 import "./Posts.css";
 
 class Posts extends React.Component {
@@ -10,9 +11,10 @@ class Posts extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.user_email);
+        //console.log(this.props.user_email);
         let promise;
         //Check if all posts should be retrieved or user specific posts
+        //console.log("Email retrieved? " + Boolean(this.props.user_email))
         this.props.user_email ?
             promise = fetch(`https://isinfo.herokuapp.com/getposts?email=${this.props.user_email}`)
             : promise = fetch(`https://isinfo.herokuapp.com/getposts`);
@@ -29,28 +31,30 @@ class Posts extends React.Component {
     render() {
         const {posts, serverStatus} = this.state;
         return (
-            <div className="w-50 pa4">
+            <div className="posts">
                 {posts[0] ? (
-                    <table className="ui table">
+                    <Table responsive>
                         <thead>
                         <tr>
-                            <th className="center aligned">Plats</th>
-                            <th className="center aligned">Betyg</th>
-                            <th className="center aligned">Kommentar</th>
-                            <th className="center aligned">Användare</th>
-                            <th className="center aligned">Datum</th>
+                            <th className="">Plats</th>
+                            <th className="">Betyg</th>
+                            <th className="">Kommentar</th>
+                            <th className="">Användare</th>
+                            <th className="">Datum</th>
                         </tr>
                         </thead>
+                        <tbody>
                         {posts.map(post => {
                             return <Post post={post}/>;
                         })}
-                    </table>
+                        </tbody>
+                    </Table>
                 ) : serverStatus === "pending" ? (
-                    <h1 className="white">Hämtar israpporter...</h1>
+                    <h1 className="white tc">Hämtar israpporter...</h1>
                 ) : serverStatus === "offline" ? (
-                    <h1 className="white">Inga israpporter att visa</h1>
+                    <h1 className="white tc">Inga israpporter att visa</h1>
                 ) : (
-                    <h1 className="white">An unknown error occurred</h1>
+                    <h1 className="white tc">Ingen kontakt med servern</h1>
                 )}
                 {}
             </div>

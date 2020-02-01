@@ -1,0 +1,8 @@
+Table {
+    background-color: white;
+}
+
+.posts {
+    grid-column-start: 2;
+
+}
