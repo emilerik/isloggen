@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import "./NewPost.css";
 import {
   Button,
   Form,
@@ -82,13 +83,13 @@ class NewPost extends React.Component {
   };
   render() {
     return (
-      <div className="ph3">
-        <p
+      <div>
+        <button
           className="tc br-pill temp pa3 pointer blue f4 bg-white"
           onClick={this.toggleShow}
         >
           Ny rapport
-        </p>
+        </button>
 
         <Modal show={this.state.showModal} onHide={this.toggleShow}>
           <Modal.Body>
