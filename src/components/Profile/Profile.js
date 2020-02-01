@@ -18,7 +18,7 @@ const Profile = () => {
         <Card className="tc">
           <img src={user.picture} alt="profile" className="profile-pic"/>
           <Card.Content className="">
-            <h1 className="ma1">{user.nickname}</h1>
+            <h1 className="ma1 f3">{user.nickname}</h1>
             <p className="gray">Gick med Februari 2020</p>
             {/*<p>{user.postcount} inlägg</p>*/}
           </Card.Content>
