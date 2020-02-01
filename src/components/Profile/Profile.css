@@ -1,0 +1,28 @@
+.profile-pic {
+    width: 100%;
+}
+
+.profile {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% minmax(50%, auto) 20%;
+    /*justify-items: center;*/
+    grid-gap: 1rem;
+    padding: 2rem;
+}
+
+@media (max-width: 700px) {
+    .profile {
+        grid-template-columns: 20% minmax(50%, auto);
+        padding: 1rem 0.5rem 1rem 0.5rem;
+    }
+    .profile h1 {
+        font-size: 1rem!important;
+    }
+    .profile p, th, td {
+        font-size: 0.5rem!important;
+    }
+    th {
+        font-size: 0.5rem!important;
+    }
+}

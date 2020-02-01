@@ -30,7 +30,7 @@ const lock = new Auth0Lock('XEx3hV9bQPknS835BgW07rZ6qdCaPzEb', 'isinfo.eu.auth0.
 
 function Register() {
     return (
-        <div className="dropdown ph3">
+        <div className="dropdown">
             <p
                 className="ph3 f4 pointer ma0"
                 onClick={() => lock.show()}>

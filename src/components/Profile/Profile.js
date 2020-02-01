@@ -1,29 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import Posts from "../Posts/Posts";
 import { useAuth0 } from "../../react-auth0-wrapper";
+import "./Profile.css";
 
 const Profile = () => {
   const { loading, user } = useAuth0();
   if (loading || !user) {
-    return <p>"Loading..."</p>;
+    return <p>Hämtar information...</p>;
   }
 
+  console.log(user);
+
   return (
-    <div className="w-100">
-      <div className="fl w-30 flex justify-center">
-        <Card className="">
-          <Image src={user.picture} />
+    <div className="profile">
+      <div className="profile-card">
+        <Card className="tc">
+          <img src={user.picture} alt="profile" className="profile-pic"/>
           <Card.Content className="">
-            <h1 className="ma1">{user.given_name}</h1>
-            <p className="gray">Gick med April 2019</p>
-            <p>{user.postcount} inlägg</p>
+            <h1 className="ma1">{user.nickname}</h1>
+            <p className="gray">Gick med Februari 2020</p>
+            {/*<p>{user.postcount} inlägg</p>*/}
           </Card.Content>
         </Card>
       </div>
-      <div className="fl w-40">
         <Posts user_email={user.email} />
-      </div>
     </div>
   );
 };
