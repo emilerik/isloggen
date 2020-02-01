@@ -1,30 +1,27 @@
-import React, { Component } from "react";
-import Header from "../components/Header/Header";
+import React, {Component} from "react";
 import HeaderAuth from "../components/Header/HeaderAuth";
-import Posts from "../components/Posts/Posts";
+import Home from "../components/Home/Home";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Profile from "../components/Profile/Profile";
 // eslint-disable-next-line
 import TestComponent from "./TestComponent";
 import "./App.css";
 import "tachyons";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 class App extends Component {
-    render(){
-
-    console.log("location: " + this.props.location);
-    return (
-    <div className="avenir App flex flex-column items-center">
-      <BrowserRouter>
-        <HeaderAuth />
-        <Switch>
-          <Route path="/" exact render={() => <Posts />} />
-          <PrivateRoute path="/profile" render={() => <Profile />} />
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
+    render() {
+        return (
+            <div className="avenir App flex flex-column items-center">
+                <BrowserRouter>
+                    <HeaderAuth/>
+                    <Switch>
+                        <Route path="/" exact render={() => <Home/>}/>
+                        <PrivateRoute path="/profile" render={() => <Profile/>}/>
+                    </Switch>
+                </BrowserRouter>
+            </div>
+        );
     }
 };
 

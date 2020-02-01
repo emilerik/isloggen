@@ -1,7 +1,13 @@
 .App {
   height: 200vh;
-  text-align: center;
   background: linear-gradient(to right, rgb(89, 250, 255), rgb(19, 148, 255));
+}
+
+.main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(50%, auto) auto;
+  padding: 2rem;
 }
 
 .App-logo {
