@@ -1,0 +1,11 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "password",
+    "host": "localhost",
+    "database": "isloggendb",
+    "port": 5432,
+    "schema": "public"
+  }
+}
