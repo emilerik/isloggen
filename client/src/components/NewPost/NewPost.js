@@ -12,7 +12,7 @@ import {
   TextArea,
   // eslint-disable-next-line
   Select,
-} from "../Profile/node_modules/semantic-ui-react";
+} from "semantic-ui-react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 
 const betygOptions = ["1", "2", "3", "4", "5"].map((betyg) => ({
