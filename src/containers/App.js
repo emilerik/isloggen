@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HeaderAuth from "../components/Header/HeaderAuth";
+import Header from "../components/Header/Header";
 import Home from "../components/Home/Home";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Profile from "../components/Profile/Profile";
@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="avenir App flex flex-column items-center">
         <BrowserRouter>
-          <HeaderAuth />
+          <Header />
           <Switch>
             <Route path="/" exact render={() => <Home />} />
             <PrivateRoute path="/profile" render={() => <Profile />} />

@@ -6,26 +6,34 @@ import { config } from "../../config";
 import { usePosts } from "../../postsState";
 import fs from "fs";
 
-const Posts = (user_email = "") => {
+const Posts = ({ user_email = "" }) => {
   const posts = usePosts((state) => state.posts);
   const setPosts = usePosts((state) => state.setPosts);
   const [serverStatus, setServerStatus] = useState("pending");
 
   useEffect(() => {
-    const url = user_email
+    const postsUrl = user_email
       ? config.url + "/getposts/" + user_email
       : config.url + "/getposts";
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((posts) => {
-        setPosts(posts);
-        setServerStatus("online");
-      })
-      .catch((err) => {
-        setServerStatus("offline");
-        console.log(err);
-      });
+    const usersUrl = config.url + "/getuserbyid";
+
+    async function fetchPosts() {
+      let posts = await fetch(postsUrl)
+        .then((response) => response.json())
+        .then((posts) => {
+          setPosts(posts);
+          setServerStatus("online");
+        })
+        .catch((err) => {
+          setServerStatus("offline");
+          console.log(err);
+        });
+
+      return posts;
+    }
+
+    setPosts(fetchPosts());
 
     return () => {};
   }, [setPosts, user_email]);
@@ -45,7 +53,7 @@ const Posts = (user_email = "") => {
           </thead>
           <tbody>
             {posts.map((post) => {
-              return <Post post={post} />; // TODO add post id as keys
+              return <Post key={post.id} post={post} />;
             })}
           </tbody>
         </Table>

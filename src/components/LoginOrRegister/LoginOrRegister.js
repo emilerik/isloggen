@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth0 } from "../../react-auth0-wrapper";
 import { Auth0Lock } from "auth0-lock";
 
 function LoginOrRegister({ type }) {
@@ -6,7 +7,7 @@ function LoginOrRegister({ type }) {
   const options = {
     additionalSignUpFields: [
       {
-        name: "namn",
+        name: "name",
         placeholder: "ditt namn",
         source: "root",
       },
@@ -35,7 +36,7 @@ function LoginOrRegister({ type }) {
     {
       auth: {
         redirectUrl: "http://localhost:3000",
-        responseType: "code",
+        responseType: "token",
         params: {
           scope: "openid email", // Learn about scopes: https://auth0.com/docs/scopes
         },
@@ -43,9 +44,11 @@ function LoginOrRegister({ type }) {
     }
   );
 
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <div className="dropdown">
-      <p className="ph3 f4 pointer ma0" onClick={() => lock.show()}>
+      <p className="ph3 f4 pointer ma0" onClick={() => loginWithRedirect()}>
         {type === "signUp" ? "Registrera" : "Logga in"}
       </p>
     </div>

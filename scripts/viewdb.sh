@@ -1,0 +1,1 @@
+pgcli -h localhost -U postgres -d isloggendb

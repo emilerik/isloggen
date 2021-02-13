@@ -5,7 +5,7 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: ""
+      post: "",
     };
   }
 
@@ -16,15 +16,21 @@ class Post extends React.Component {
   // }
 
   render() {
-    const { plats, betyg, kommentar, datum, name } = this.props.post;
+    const {
+      location_id,
+      rating,
+      comment,
+      observation_timestamp,
+      name,
+    } = this.props.post;
     return (
-        <tr>
-          <td className="">{plats}</td>
-          <td className="">{betyg}</td>
-          <td className="">{kommentar}</td>
-          <td className="">{name}</td>
-          <td className="">{datum}</td>
-        </tr>
+      <tr>
+        <td className="">{location_id}</td>
+        <td className="">{rating}</td>
+        <td className="">{comment}</td>
+        <td className="">{name}</td>
+        <td className="">{observation_timestamp}</td>
+      </tr>
     );
   }
 }

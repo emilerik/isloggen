@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "./NewPost.css";
 import { usePosts } from "../../postsState";
+import { config } from "../../config";
 import {
   Button,
   Form,
@@ -29,34 +30,44 @@ const platsOptions = ["Drevviken", "Norrviken"].map((plats) => ({
 const NewReportModal = ({ showModal, setShowModal }) => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState("");
-  const [location, setLocation] = useState("");
+  const [location_id, setLocationId] = useState("");
   const [incorrectSubmission, setIncorrectSubmission] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const { user } = useAuth0();
-  console.log(user);
   const addPost = usePosts((state) => state.addPost);
 
-  const onSubmitPost = () => {
-    if (comment && location && rating) {
-      setShowModal(false);
+  const onSubmitPost = async () => {
+    if (comment && location_id && rating) {
+      setIncorrectSubmission(false);
+      setLoading(true);
       const date = new Date();
-      fetch("https://isinfo.herokuapp.com/post", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: user.sub,
-          comment,
-          rating,
-          location,
-        }),
-      })
-        .then((res) => {
-          setShowConfirmation(true);
-          addPost({ comment, rating, location });
-        })
-        .catch((err) => console.log(`There was an error: ${err}`));
+      try {
+        const postPromise = await fetch(`${config.url}/post`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: user.sub,
+            comment,
+            rating,
+            location_id,
+          }),
+        });
+
+        if (postPromise.status >= 400 && postPromise.status < 600) {
+          throw new Error("Bad response from server");
+        }
+        const post = await postPromise.json();
+
+        setShowConfirmation(true);
+        addPost(post);
+        setShowModal(false);
+      } catch (e) {
+        setIncorrectSubmission(true);
+      }
+      setLoading(false);
     } else {
       setIncorrectSubmission(true);
     }
@@ -70,7 +81,7 @@ const NewReportModal = ({ showModal, setShowModal }) => {
           <Form className="pa2 ma2" direction="left">
             <Form.Group widths="equal">
               <Form.Select
-                onChange={(e, { value }) => setLocation(value)}
+                onChange={(e, { value }) => setLocationId(value)}
                 label="Plats"
                 options={platsOptions}
               />
@@ -89,10 +100,21 @@ const NewReportModal = ({ showModal, setShowModal }) => {
               <p className="red">Vänligen fyll i alla fält</p>
             )}
             <div className="tr">
-              <Button variant="secondary" onClick={() => setShowModal(false)}>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setShowModal(false);
+                  setIncorrectSubmission(false);
+                }}
+              >
                 Avbryt
               </Button>
-              <Button variant="primary" primary onClick={onSubmitPost}>
+              <Button
+                loading={loading}
+                variant="primary"
+                primary
+                onClick={onSubmitPost}
+              >
                 Skicka
               </Button>
             </div>
@@ -105,7 +127,7 @@ const NewReportModal = ({ showModal, setShowModal }) => {
           setShowConfirmation={setShowConfirmation}
           comment={comment}
           rating={rating}
-          location={location}
+          location={location_id}
         />
       )}
     </div>
@@ -129,8 +151,12 @@ const ConfirmationModal = ({
         <p>Kommentar: {comment}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" primary>
-          <a href="/">Gå tillbaka</a>
+        <Button
+          variant="primary"
+          primary
+          onClick={() => setShowConfirmation(false)}
+        >
+          Gå tillbaka
         </Button>
       </Modal.Footer>
     </Modal>
