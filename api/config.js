@@ -5,7 +5,7 @@ const devConfig = {
 
 const prodConfig = {
   dburl: process.env.DATABASE_URL,
-  dbssl: true,
+  dbssl: { rejectUnauthorized: false },
 };
 
 module.exports = {
