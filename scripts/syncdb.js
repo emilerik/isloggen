@@ -4,6 +4,12 @@ require("dotenv").config();
 const axios = require("axios");
 
 const ManagementClient = require("auth0").ManagementClient;
+const env = "prod";
+
+const apiUrl =
+  env === "dev"
+    ? "http://localhost:3001/register"
+    : "https://isinfo.herokuapp.com/register";
 
 const auth0 = new ManagementClient({
   domain: "isinfo.eu.auth0.com",
@@ -32,7 +38,7 @@ const auth0ToDb = async () => {
   users.forEach(async (user) => {
     console.log(user);
     await axios.post(
-      "http://localhost:3001/register",
+      apiUrl,
       { id: user.user_id, name: user?.user_metadata?.name || user.name },
       postOptions
     );
