@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { Auth0Lock } from "auth0-lock";
+import Snowflake from "../../assets/snowflake.png";
 
 function LoginOrRegister({ type }) {
   console.log();
@@ -15,7 +16,7 @@ function LoginOrRegister({ type }) {
     initialScreen: type,
     allowLogin: true,
     theme: {
-      logo: "http://pngimg.com/uploads/snowflakes/snowflakes_PNG7545.png", // TODO: replace with own
+      logo: Snowflake, // TODO: replace with own
       primaryColor: "#1394FF",
     },
     language: "sv",
