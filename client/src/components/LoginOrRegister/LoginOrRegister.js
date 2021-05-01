@@ -15,6 +15,7 @@ function LoginOrRegister({ type }) {
     ],
     initialScreen: type,
     allowLogin: true,
+    loginAfterSignUp: true,
     theme: {
       logo: Snowflake, // TODO: replace with own
       primaryColor: "#1394FF",
