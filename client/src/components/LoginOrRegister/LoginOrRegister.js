@@ -49,7 +49,11 @@ function LoginOrRegister({ type }) {
 
   return (
     <div className="dropdown">
-      <p className="ph3 f4 pointer ma0" onClick={() => loginWithRedirect()}>
+      <p
+        className="ph3 f4 pointer ma0"
+        //onClick={() => loginWithRedirect({ initialScreen: type })}
+        onClick={() => lock.show()}
+      >
         {type === "signUp" ? "Registrera" : "Logga in"}
       </p>
     </div>
